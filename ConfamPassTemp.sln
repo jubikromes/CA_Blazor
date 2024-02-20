@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34310.174
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfamPassTemp", "ConfamPassTemp\ConfamPassTemp\ConfamPassTemp.csproj", "{D65DFF68-E1D6-44DD-9698-E81B7A61E2B0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfamPassTemp.Client", "ConfamPassTemp\ConfamPassTemp.Client\ConfamPassTemp.Client.csproj", "{A04833EA-922B-4851-9EA2-BD99DA2EACEB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D65DFF68-E1D6-44DD-9698-E81B7A61E2B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D65DFF68-E1D6-44DD-9698-E81B7A61E2B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D65DFF68-E1D6-44DD-9698-E81B7A61E2B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D65DFF68-E1D6-44DD-9698-E81B7A61E2B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A04833EA-922B-4851-9EA2-BD99DA2EACEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A04833EA-922B-4851-9EA2-BD99DA2EACEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A04833EA-922B-4851-9EA2-BD99DA2EACEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A04833EA-922B-4851-9EA2-BD99DA2EACEB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FFCA6A30-1641-4959-A39A-C4384F44B0D4}
+	EndGlobalSection
+EndGlobal

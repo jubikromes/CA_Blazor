@@ -1,0 +1,127 @@
+﻿@page "/all-accesses"
+@using ConfamPassTemp.Components.Pages.Services.Accesses
+@using ConfamPassTemp.Components.ViewModels.Accesses
+@attribute [StreamRendering]
+
+
+<section id="recent-posts" class="recent-posts">
+
+    <!--  Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Recent Passes</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row gy-4">
+            @if (TopTicketViewModels is null || TopTicketViewModels.Count == 0)
+            {
+                <LoaderDiv />
+            }
+            else
+            {
+                foreach (var ticket in TopTicketViewModels)
+                {
+                    <AccessDiv Id="@ticket.Id" CompanyName="@ticket.CompanyName" CreatorImage="@ticket.ImageUrl"
+                               CreatedUtc="@ticket.CreatedUtc.ToString()" ShortDescription="@ticket.Description"
+                               Title="@ticket.Title" ImageUrl="@ticket.ImageUrl"/>
+                }
+            }
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="recent-posts" class="recent-posts">
+
+    <!--  Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Top Rated Passes</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row gy-4">
+            @if (AllTicketViewModels is null || AllTicketViewModels.Count == 0)
+            {
+                <LoaderDiv />
+            }
+            else
+            {
+                foreach (var ticket in AllTicketViewModels)
+                {
+                    <AccessDiv Id="@ticket.Id" CompanyName="@ticket.CompanyName" 
+                    CreatorImage="@ticket.ImageUrl" ImageUrl="@ticket.ImageUrl" ShortDescription="@ticket.Description"
+                               Title="@ticket.Title" />
+                }
+            }
+        </div>
+
+    </div>
+
+</section>
+
+
+@code {
+    private List<AccessViewModel> TopTicketViewModels = new List<AccessViewModel> { };
+    private List<AccessViewModel> AllTicketViewModels = new List<AccessViewModel> { };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000);
+        TopTicketViewModels.AddRange(new List<AccessViewModel> {new AccessViewModel
+        {
+            Id = Guid.NewGuid().ToString(),
+            Title = "Gym Access",
+            ImageUrl = "",
+            Description = "Access to the gym",
+            CompanyName = ""
+        },
+        new AccessViewModel
+        {
+            Id = Guid.NewGuid().ToString(),
+            Title = "Club Access",
+            ImageUrl = "",
+            Description = "Access to the club",
+            CompanyName = ""
+
+        },
+        new AccessViewModel
+        {
+            Id = Guid.NewGuid().ToString(),
+            Title = "Work Space Access",
+             ImageUrl = "",
+            Description = "Access to the workspace",
+            CompanyName = ""
+        }});
+
+        AllTicketViewModels.AddRange(new List<AccessViewModel> {new AccessViewModel
+        {
+            Id =  Guid.NewGuid().ToString(),
+            Title = "Gym Access",
+            ImageUrl = "",
+            Description = "Access to the gym",
+            CompanyName = ""
+        },
+        new AccessViewModel
+        {
+            Id =  Guid.NewGuid().ToString(),
+            Title = "Club Access",
+            ImageUrl = "",
+            Description = "Access to the club",
+            CompanyName = ""
+        },
+        new AccessViewModel
+        {
+            Id =  Guid.NewGuid().ToString(),
+            Title = "Work Space Access",
+            ImageUrl = "",
+            CompanyName = "",
+            Description = "Access to the workspace",
+        } });
+    }
+}

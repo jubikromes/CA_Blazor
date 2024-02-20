@@ -1,0 +1,92 @@
+﻿@page "/buy-ticket"
+
+
+<section id="call-to-action" class="call-to-action">
+
+    <img src="assets/img/cta-bg.jpg" alt="">
+
+    <div class="container">
+        <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+            <div class="col-xl-10">
+                <div class="text-center">
+                    <h3>{Event}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+<section id="services" class="services">
+
+    <!--  Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Buy Ticket </h2>
+        <p>Ticket Details</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+        <form>
+        <div class="row gy-4">
+
+            <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="200">
+                <div class="card border-danger">
+                    <div class="card-header bg-transparent border-danger">Ticket Summary</div>
+                    <div class="card-body d-flex text-danger justify-content-between align-items-center">
+                        <h5 class="card-title">VVIP: </h5>
+                            <a href="javascipt:;"><i class="bi bi-plus-lg"></i></a>
+                    </div>
+                        <div class="card-body">
+                        <div class="col-md-6 mb-3">
+                            <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Whatsapp Number or Email" value="08066702245" required>
+                        </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Whatsapp Number or Email" value="08066702245" required>
+                        </div>
+                    </div>
+
+                        <div class="card-body d-flex text-danger justify-content-between align-items-center">
+                            <h5 class="card-title">VIP: </h5>
+                            <a href="javascipt:;"><i class="bi bi-plus-lg"></i></a>
+                        </div>
+                        <div class="card-body">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Whatsapp Number or Email" value="08066702245" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control is-valid" id="validationServer02" placeholder="Whatsapp Number or Email" value="08066702245" required>
+                            </div>
+                        </div>
+                    <div class="card-footer bg-transparent border-danger">Total: &#8358 {0.00} </div>
+                </div>
+            </div>
+            <!-- End Service Item -->
+
+            <div class="col-lg-6 " data-aos="fade-up" data-aos-delay="200">
+                <div class="card border-danger">
+                    <div class="card-header bg-transparent border-danger">Ticket Summary</div>
+                    <div class="card-body text-danger">
+                        <h5 class="card-title">VVIP:    {count} </h5>
+                        <h5 class="card-title">VIP:    {count}</h5>
+                    </div>
+                        <div class="card-footer  d-flex bg-transparent border-danger justify-content-between align-items-center">
+                            <h3>Total : {Amount}</h3>
+                            <a class="btn btn-danger">Check out</a>
+                        </div>
+                </div>
+            </div><!-- End Service Item -->
+
+          
+
+        </div>
+        </form>
+    </div>
+
+</section><!-- End Services Section -->
+
+
+
+@code {
+
+}

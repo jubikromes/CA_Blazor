@@ -1,0 +1,93 @@
+﻿@page "/event-detail/{Id}";
+
+<section id="features" class="features">
+
+    <!--  Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>@Title</h2>
+        <p>@ShortDescription</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+        <div class="row gy-4 align-items-stretch justify-content-between features-item ">
+            <div class="col-lg-6 d-flex align-items-center features-img-bg" data-aos="zoom-out">
+                <img src="../img/features-light-2.jpg" class="img-fluid" alt="">
+            </div>
+            <div class="col-lg-5 d-flex justify-content-center flex-column" data-aos="fade-up">
+                <h3>Sunt consequatur ad ut est nulla</h3>
+                <p>Cupiditate placeat cupiditate placeat est ipsam culpa. Delectus quia minima quod. Sunt saepe odit aut quia voluptatem hic voluptas dolor doloremque.</p>
+                <ul>
+                    <li><i class="bi bi-check"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
+                    <li><i class="bi bi-check"></i><span> Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
+                    <li><i class="bi bi-check"></i> <span>Facilis ut et voluptatem aperiam. Autem soluta ad fugiat</span>.</li>
+                </ul>
+                <a href="#" class="btn btn-get-started align-self-start">Buy Tickets</a>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section  class="features">
+    <div class="container">
+
+        <div class="row features-item ">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">VVIP</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <NavLink href="buy-ticket" class="btn btn-get-started">Buy</NavLink>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">VIP</h5>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        <NavLink href="buy-ticket" class="btn btn-get-started">Buy</NavLink>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+@code {
+    [Parameter]
+    public string Id { get; set; }
+
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public string? ShortDescription { get; set; }
+
+    [Parameter]
+
+    public string? Creator { get; set; }
+    [Parameter]
+
+    public string? EventDate { get; set; }
+    [Parameter]
+
+    public string? EventImage { get; set; }
+    [Parameter]
+
+    public string? CreatorImage { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+
+
+        //get ticket details from API here
+        Id = Guid.NewGuid().ToString();
+        Creator = "James Abah";
+        EventImage = "img/blog/blog-1.jpg";
+        CreatorImage = "img/blog/blog-author.jpg";
+        ShortDescription = "Burna boy IN Lagos";
+        Title = "Burna boy unlimited";
+        EventDate = DateTime.UtcNow.ToString();
+    }
+}

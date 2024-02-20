@@ -1,0 +1,135 @@
+﻿@page "/all-events"
+@using ConfamPassTemp.Components.ViewModels.Events
+@attribute [StreamRendering]
+
+
+<section id="recent-posts" class="recent-posts">
+
+    <!--  Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Recent Events</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row gy-4">
+            @if (TopTicketViewModels is null || TopTicketViewModels.Count == 0)
+            {
+                <LoaderDiv />
+            }
+            else
+            {
+                foreach (var ticket in TopTicketViewModels)
+                {
+                    <EventDiv Id="@ticket.Id" Creator="@ticket.Creator" CreatorImage="@ticket.CreatorImage" EventDate="@ticket.EventDate" EventImage="@ticket.EventImage" ShortDescription="@ticket.ShortDescription"
+                            Title="@ticket.Title" />
+                }
+            }
+        </div>
+
+    </div>
+
+</section>
+
+
+<section id="recent-posts" class="recent-posts">
+
+    <!--  Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Top Rated Events</h2>
+        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+    </div><!-- End Section Title -->
+
+    <div class="container">
+
+        <div class="row gy-4">
+            @if (AllTicketViewModels is null || AllTicketViewModels.Count == 0)
+            {
+                <LoaderDiv />
+            }
+            else
+            {
+                foreach (var ticket in AllTicketViewModels)
+                {
+                    <EventDiv Id="@ticket.Id" Creator="@ticket.Creator" CreatorImage="@ticket.CreatorImage" EventDate="@ticket.EventDate" EventImage="@ticket.EventImage" ShortDescription="@ticket.ShortDescription"
+                    Title="@ticket.Title"/>
+                }
+            }
+        </div>
+
+    </div>
+
+</section>
+
+
+@code {
+    private List<EventViewModel> TopTicketViewModels = new List<EventViewModel> { };
+    private List<EventViewModel> AllTicketViewModels = new List<EventViewModel> { };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000);
+        TopTicketViewModels.AddRange(new List<EventViewModel> {new EventViewModel
+        {
+            Id = Guid.NewGuid().ToString(),
+            Creator = "James Abah",
+            EventImage = "img/blog/blog-1.jpg",
+            CreatorImage = "img/blog/blog-author.jpg",
+            ShortDescription = "Burna boy IN Lagos",
+            Title = "Burna boy unlimited",
+            EventDate = DateTime.UtcNow.ToString(),
+        },
+        new EventViewModel
+        {
+            Id = Guid.NewGuid().ToString(),
+            Creator = "James Abah",
+            EventImage = "img/blog/blog-1.jpg",
+            CreatorImage = "img/blog/blog-author.jpg",
+            ShortDescription = "Wiz boy IN Lagos",
+            Title = "Wiz boy unlimited",
+            EventDate = DateTime.UtcNow.ToString(),
+        },
+        new EventViewModel
+        {
+            Id = Guid.NewGuid().ToString(),
+            Creator = "James Abah",
+            EventImage = "img/blog/blog-1.jpg",
+            CreatorImage = "img/blog/blog-author.jpg",
+            ShortDescription = "Fresh boy IN Lagos",
+            Title = "Fresh boy unlimited",
+            EventDate = DateTime.UtcNow.ToString(),
+        }});
+
+        AllTicketViewModels.AddRange(new List<EventViewModel> {new EventViewModel
+        {
+            Id =  Guid.NewGuid().ToString(),
+            Creator = "James Abah",
+            EventImage = "img/blog/blog-1.jpg",
+            CreatorImage = "img/blog/blog-author.jpg",
+            ShortDescription = "Burna boy IN Lagos",
+            Title = "Burna boy unlimited",
+            EventDate = DateTime.UtcNow.ToString(),
+        },
+        new EventViewModel
+        {
+            Id =  Guid.NewGuid().ToString(),
+            Creator = "James Abah",
+            EventImage = "img/blog/blog-1.jpg",
+            CreatorImage = "img/blog/blog-author.jpg",
+            ShortDescription = "Wiz boy IN Lagos",
+            Title = "Wiz boy unlimited",
+            EventDate = DateTime.UtcNow.ToString(),
+        },
+        new EventViewModel
+        {
+            Id =  Guid.NewGuid().ToString(),
+            Creator = "James Abah",
+            EventImage = "img/blog/blog-1.jpg",
+            CreatorImage = "img/blog/blog-author.jpg",
+            ShortDescription = "Fresh boy IN Lagos",
+            Title = "Fresh boy unlimited",
+            EventDate = DateTime.UtcNow.ToString(),
+        }});
+    }
+}
