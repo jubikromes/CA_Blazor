@@ -1,5 +1,4 @@
-﻿namespace ConfamPassTemp.Components.ViewModels.Auth;
-
+﻿namespace Shared.ViewModels.Auth;
 public class SigninRequest
 {
     public string? Username { get; set; }

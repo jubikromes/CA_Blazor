@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfamPassTemp", "ConfamPas
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConfamPassTemp.Client", "ConfamPassTemp\ConfamPassTemp.Client\ConfamPassTemp.Client.csproj", "{A04833EA-922B-4851-9EA2-BD99DA2EACEB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{004D0219-A7CE-4AD4-9DBB-832CECF7AAAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A04833EA-922B-4851-9EA2-BD99DA2EACEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A04833EA-922B-4851-9EA2-BD99DA2EACEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A04833EA-922B-4851-9EA2-BD99DA2EACEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{004D0219-A7CE-4AD4-9DBB-832CECF7AAAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{004D0219-A7CE-4AD4-9DBB-832CECF7AAAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{004D0219-A7CE-4AD4-9DBB-832CECF7AAAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{004D0219-A7CE-4AD4-9DBB-832CECF7AAAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

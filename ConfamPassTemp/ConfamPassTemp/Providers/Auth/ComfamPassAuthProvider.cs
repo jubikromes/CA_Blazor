@@ -19,16 +19,15 @@ public class ComfamPassAuthProvider : AuthenticationStateProvider
     }
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
-        string token = await _localStorage.GetItemAsStringAsync("token");
-
+        string token = await _localStorage.GetItemAsStringAsync("token") ?? "";
         var identity = new ClaimsIdentity();
+        
         _http.DefaultRequestHeaders.Authorization = null;
 
         if (!string.IsNullOrEmpty(token))
         {
             identity = new ClaimsIdentity(ParseClaimsFromJwt(token), "jwt");
-            _http.DefaultRequestHeaders.Authorization =
-                new AuthenticationHeaderValue("Bearer", token.Replace("\"", ""));
+            _http.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token.Replace("\"", ""));
         }
 
         var user = new ClaimsPrincipal(identity);
@@ -44,6 +43,9 @@ public class ComfamPassAuthProvider : AuthenticationStateProvider
         var payload = jwt.Split('.')[1];
         var jsonBytes = ParseBase64WithoutPadding(payload);
         var keyValuePairs = JsonSerializer.Deserialize<Dictionary<string, object>>(jsonBytes);
+        if (keyValuePairs == null) 
+            return [];
+
         return keyValuePairs.Select(kvp => new Claim(kvp.Key, kvp.Value.ToString()));
     }
 

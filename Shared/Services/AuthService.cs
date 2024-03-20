@@ -1,8 +1,9 @@
-﻿using ConfamPassTemp.Components.ViewModels.Auth;
-using Microsoft.AspNetCore.Identity.Data;
+﻿
 using Newtonsoft.Json;
+using Shared.ViewModels.Auth;
+using System.Net.Http.Json;
 
-namespace ConfamPassTemp.Services;
+namespace Shared.Services;
 
 public class AuthService(HttpClient httpClient)
 {
@@ -29,7 +30,7 @@ public class AuthService(HttpClient httpClient)
             return null;
         }
     }
-    public async Task<bool> Register(Components.ViewModels.Auth.RegisterRequest request)
+    public async Task<bool> Register(RegisterRequest request)
     {
         var result = await _httpClient.PostAsJsonAsync("auth/register", request);
         return result.IsSuccessStatusCode;

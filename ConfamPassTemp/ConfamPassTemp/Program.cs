@@ -2,8 +2,9 @@ using Blazored.LocalStorage;
 using ConfamPassTemp.Client.Pages;
 using ConfamPassTemp.Components;
 using ConfamPassTemp.Providers.Auth;
-using ConfamPassTemp.Services;
+using Shared.Services;
 using Microsoft.AspNetCore.Components.Authorization;
+using MudBlazor.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,6 +23,10 @@ builder.Services
     .AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+
+
+builder.Services.AddMudServices();
 
 var app = builder.Build();
 app.UsePathBase("/confampass");
@@ -47,6 +52,7 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(Counter).Assembly);
+
 
 
 
