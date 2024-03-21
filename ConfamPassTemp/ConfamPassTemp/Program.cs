@@ -1,10 +1,10 @@
 using Blazored.LocalStorage;
+using Client.Providers.Auth;
 using ConfamPassTemp.Client.Pages;
 using ConfamPassTemp.Components;
-using ConfamPassTemp.Providers.Auth;
-using Shared.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor.Services;
+using Shared.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +15,6 @@ builder.Services.AddHttpClient<AuthService>(options =>
     options.BaseAddress = new Uri("https://localhost:7191/");
 });
 
-builder.Services.AddScoped<AuthenticationStateProvider, ComfamPassAuthProvider>();
 builder.Services.AddAuthorizationCore();
 
 builder.Services.AddBlazoredLocalStorage();
@@ -52,8 +51,6 @@ app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(Counter).Assembly);
-
-
 
 
 app.Run();

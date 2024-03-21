@@ -3,9 +3,8 @@ using Microsoft.AspNetCore.Components.Authorization;
 using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text.Json;
-using static System.Net.WebRequestMethods;
 
-namespace ConfamPassTemp.Providers.Auth;
+namespace Client.Providers.Auth;
 
 public class ComfamPassAuthProvider : AuthenticationStateProvider
 {
