@@ -4,25 +4,33 @@ using ConfamPassTemp.Client.Pages;
 using ConfamPassTemp.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor.Services;
-using Shared.Services;
+using Shared.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddHttpClient<AuthService>(options =>
+
+
+builder.Services.AddHttpClient("Auth");
+
+builder.Services.AddHttpClient<PersistingAuthenticationStateProvider>(options =>
 {
     options.BaseAddress = new Uri("https://localhost:7191/");
 });
 
 builder.Services.AddAuthorizationCore();
+builder.Services.AddScoped<PersistingAuthenticationStateProvider>();
+builder.Services.AddScoped<AuthenticationStateProvider>(provider => provider.GetRequiredService<PersistingAuthenticationStateProvider>());
+
+builder.Services.AddScoped(
+    sp => (IAuthService)sp.GetRequiredService<AuthenticationStateProvider>());
 
 builder.Services.AddBlazoredLocalStorage();
 builder.Services
     .AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
-
 
 
 builder.Services.AddMudServices();
@@ -52,5 +60,6 @@ app.MapRazorComponents<App>()
     .AddInteractiveWebAssemblyRenderMode()
     .AddAdditionalAssemblies(typeof(Counter).Assembly);
 
+app.MapGroup("/authentication").MapLoginAndLogout();
 
 app.Run();

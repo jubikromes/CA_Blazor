@@ -1,8 +1,10 @@
 ﻿@page "/login"
-@using Shared.Services;
 @using Shared.ViewModels.Auth
 
-@inject AuthService AuthService
+
+@inject PersistentComponentState PsComponentState
+
+@inject PersistingAuthenticationStateProvider AuthService
 @inject NavigationManager NavigationManager
 <h3>Register</h3>
 <EditForm class="new-blog-form" Model="@LoginViewModel" OnValidSubmit="HandleValidSubmit" FormName="login-form">
@@ -42,10 +44,10 @@
 
         return Task.CompletedTask;
     }
-    // private SigninRequest? loginRequest = new SigninRequest();
     private async void HandleValidSubmit()
     {
-        var signInResponse = await AuthService.Login(LoginViewModel!);
+
+        var signInResponse = await AuthService.LoginAsync(LoginViewModel!);
 
         NavigationManager.NavigateTo("/login");
     }
