@@ -1,15 +1,16 @@
 using Blazored.LocalStorage;
-using Client.Providers.Auth;
 using ConfamPassTemp.Client.Pages;
 using ConfamPassTemp.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using MudBlazor.Services;
 using Shared.Interfaces;
+using Shared.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Services.Configure<AuthOptions>(builder.Configuration.GetSection("AuthOptions"));
 
 
 builder.Services.AddHttpClient("Auth");

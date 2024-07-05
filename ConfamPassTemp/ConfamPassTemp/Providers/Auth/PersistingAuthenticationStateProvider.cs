@@ -12,6 +12,8 @@ using Shared.ViewModels.Auth;
 using Shared.ViewModels;
 using Blazored.LocalStorage;
 using Newtonsoft.Json.Linq;
+using Shared.Options;
+using Microsoft.Extensions.Options;
 
 
 /// <summary>
@@ -19,6 +21,7 @@ using Newtonsoft.Json.Linq;
 /// </summary>
 public class PersistingAuthenticationStateProvider : AuthenticationStateProvider, IAuthService
 {
+    private readonly AuthOptions _authOptions;
     private static UserInfoResponse? UserInfo { get; set; }
 
     /// <summary>
@@ -51,9 +54,10 @@ public class PersistingAuthenticationStateProvider : AuthenticationStateProvider
     /// Create a new instance of the auth provider.
     /// </summary>
     /// <param name="httpClientFactory">Factory to retrieve auth client.</param>
-    public PersistingAuthenticationStateProvider(IHttpClientFactory httpClientFactory)
+    public PersistingAuthenticationStateProvider(IHttpClientFactory httpClientFactory, IOptions<AuthOptions> options)
     {
         _httpClient = httpClientFactory.CreateClient("Auth");
+        _authOptions = options.Value;
     }
 
     /// <summary>
@@ -133,15 +137,15 @@ public class PersistingAuthenticationStateProvider : AuthenticationStateProvider
         {
             // login with cookies
             var data = new[]
-           {
+            {
                 new KeyValuePair<string, string>("password", signInRequest.Password),
                 new KeyValuePair<string, string>("username", signInRequest.Username),
-                new KeyValuePair<string, string>("client_id" ,"test_webapp"),
-                new KeyValuePair<string, string>("scope" ,"openid profile email roles offline_access"),
-                new KeyValuePair<string, string>("grant_type" ,"password")
+                new KeyValuePair<string, string>("client_id" ,_authOptions.ClientId),
+                new KeyValuePair<string, string>("scope" , _authOptions.Scopes),
+                new KeyValuePair<string, string>("grant_type" ,_authOptions.GrantType)
             };
             var result = await _httpClient.PostAsync("https://localhost:7191/connect/token", new FormUrlEncodedContent(data));
-            
+
             if (result.IsSuccessStatusCode)
             {
                 var jsonString = await result.Content.ReadFromJsonAsync<TokenResponse>();
@@ -158,7 +162,7 @@ public class PersistingAuthenticationStateProvider : AuthenticationStateProvider
                 return UserInfo;
             }
         }
-        catch (Exception ex){ }
+        catch (Exception ex) { }
 
         // unknown error
         return null;
@@ -183,11 +187,17 @@ public class PersistingAuthenticationStateProvider : AuthenticationStateProvider
         {
             if (UserInfo != null)
             {
-            
+                var claims = new List<Claim>
+                {
+                    new(ClaimTypes.Name, UserInfo.Email),
+                    new(ClaimTypes.Email, UserInfo.Email)
+                };
+
+                var id = new ClaimsIdentity(claims, nameof(PersistingAuthenticationStateProvider));
+                user = new ClaimsPrincipal(id);
+                _authenticated = true;
             }
             // to be used later
-
-
 
             //// the user info endpoint is secured, so if the user isn't logged in this will fail
             //var userResponse = await _httpClient.GetAsync("manage/info");
@@ -241,7 +251,7 @@ public class PersistingAuthenticationStateProvider : AuthenticationStateProvider
             // set the principal
             //var id = new ClaimsIdentity(claims, nameof(PersistingAuthenticationStateProvider));
             //user = new ClaimsPrincipal(id);
-            //   _authenticated = true;
+            //_authenticated = true;
             // }
         }
         catch { }
